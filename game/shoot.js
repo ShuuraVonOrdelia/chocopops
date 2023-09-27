@@ -77,6 +77,8 @@ function player_collision()
         player1.graphic.position.y -= y - HEIGHT;
         player1.position.y -= y - HEIGHT;
     }
+    if (ennemy.graphic.position.x == player1.graphic.position.x && ennemy.graphic.position.y == player1.graphic.position.y)
+        player1.damage();
 }
 
 function player_falling()
@@ -101,7 +103,7 @@ function player_falling()
             && (y > tileY) 
             && (y > mtileY))
         {
-           player1.dead();
+           player1.damage();
            break;
         }
     }

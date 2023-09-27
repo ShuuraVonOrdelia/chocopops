@@ -2,7 +2,7 @@ var Ennemy = function(name, color, position, direction) {
 
     this.name = name;
     this.position = position;
-    this.life = 3;
+    this.life = 2;
     this.bullets = new Array();
     this.direction = direction;
     this.speed = 0;
@@ -51,6 +51,15 @@ Ennemy.prototype.turnLeft = function (angle) {
     this.direction += angle;
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), angle);
 };
+
+Ennemy.prototype.damage = function () {
+    this.life -= 1;
+    if (this.life == 0)
+        this.destroy();
+}
+
+Ennemy.prototype.destroy = function () {
+}
 
 Ennemy.prototype.move = function () {
     var moveTo = new THREE.Vector3(

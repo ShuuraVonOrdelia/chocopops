@@ -60,6 +60,12 @@ Player.prototype.turnLeft = function (angle) {
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), angle);
 };
 
+Player.prototype.damage = function () {
+    this.life -= 1;
+    if (this.life == 0)
+        this.dead();
+}
+
 Player.prototype.move = function () {
     var moveTo = new THREE.Vector3(
         this.speed * Math.cos(this.direction) + this.position.x,
