@@ -61,13 +61,22 @@ function player_collision()
     var x = player1.graphic.position.x + WIDTH / 2;
     var y = player1.graphic.position.y + HEIGHT / 2;
 
-    if ( x > WIDTH )
+    if ( x > WIDTH ) {
         player1.graphic.position.x -= x - WIDTH;
-    if ( y < 0 )
+        player1.position.x = x - WIDTH;
+    }
+    if ( x < 0 ) {
+        player1.graphic.position.x -= x;
+        player1.position.x -= x;
+    }
+    if ( y < 0 ) {
         player1.graphic.position.y -= y;
-    if ( y > HEIGHT )
+        player1.position.y -= y;
+    }
+    if ( y > HEIGHT ) {
         player1.graphic.position.y -= y - HEIGHT;
-
+        player1.position.y -= y - HEIGHT;
+    }
 }
 
 function player_falling()
@@ -77,10 +86,9 @@ function player_falling()
     var sizeOfTileY = HEIGHT / nb_tile;
     var x = player1.graphic.position.x | 0;
     var y = player1.graphic.position.y | 0;
-    var length = noGround.length;
     var element = null;
 
-    for (var i = 0; i < length; i++) {
+    for (var i = 0; i < noGround.length; i++) {
         element = noGround[i];
 
         var tileX = (element[0]) | 0;
@@ -91,10 +99,10 @@ function player_falling()
         if ((x > tileX)
             && (x < mtileX)
             && (y > tileY) 
-            && (y < mtileY))
+            && (y > mtileY))
         {
            player1.dead();
+           break;
         }
     }
-
 }
