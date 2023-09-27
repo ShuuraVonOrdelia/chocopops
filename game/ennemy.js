@@ -59,6 +59,7 @@ Ennemy.prototype.damage = function () {
 }
 
 Ennemy.prototype.destroy = function () {
+    screen.remove(this)
 }
 
 Ennemy.prototype.move = function () {
